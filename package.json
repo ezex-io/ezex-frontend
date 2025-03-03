@@ -18,11 +18,16 @@
         "commit": "cz"
     },
     "dependencies": {
+        "@tanstack/react-query": "^5.67.1",
+        "axios": "^1.8.1",
+        "next": "15.2.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
-        "next": "15.2.0"
+        "zod": "^3.24.2"
     },
     "devDependencies": {
+        "@commitlint/cli": "^19.7.1",
+        "@commitlint/config-conventional": "^19.7.1",
         "@eslint/eslintrc": "^3",
         "@tailwindcss/postcss": "^4",
         "@testing-library/dom": "^10.4.0",
@@ -31,22 +36,20 @@
         "@types/react": "^19",
         "@types/react-dom": "^19",
         "@vitejs/plugin-react": "^4.3.4",
+        "commitizen": "^4.3.1",
         "cypress": "^14.1.0",
+        "cz-conventional-changelog": "^3.3.0",
         "eslint": "^9",
         "eslint-config-next": "15.2.0",
+        "husky": "^8.0.0",
         "jsdom": "^26.0.0",
+        "lint-staged": "^15.4.3",
+        "prettier": "^3.5.2",
+        "prettier-plugin-tailwindcss": "^0.6.11",
         "tailwindcss": "^4",
         "typescript": "^5",
         "vite-tsconfig-paths": "^5.1.4",
-        "vitest": "^3.0.7",
-        "@commitlint/cli": "^19.7.1",
-        "@commitlint/config-conventional": "^19.7.1",
-        "commitizen": "^4.3.1",
-        "cz-conventional-changelog": "^3.3.0",
-        "husky": "^8.0.0",
-        "lint-staged": "^15.4.3",
-        "prettier": "^3.5.2",
-        "prettier-plugin-tailwindcss": "^0.6.11"
+        "vitest": "^3.0.7"
     },
     "packageManager": "bun@1.2.0",
     "config": {

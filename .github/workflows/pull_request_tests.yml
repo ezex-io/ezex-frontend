@@ -1,0 +1,67 @@
+name: Test on Pull Requests
+
+on:
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    unit-test:
+        name: Run Unit Tests
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+
+            - name: Install pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 10.5.2
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22.14 # Use the appropriate Node.js version
+                  cache: "pnpm" # Caches node_modules for faster runs
+
+            - name: Install Dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Run Unit Tests
+              run: pnpm test:ci
+
+    e2e-test:
+        name: Run E2E Tests
+        runs-on: ubuntu-latest
+        needs: unit-test # Only run if unit tests pass
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+
+            - name: Install pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 10.5.2
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22.14
+                  cache: "pnpm"
+
+            - name: Install Dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Install Cypress Binary
+              run: pnpm cypress install
+
+            - name: Run Cypress Tests
+              uses: cypress-io/github-action@v6
+              with:
+                  with:
+                  build: pnpm build
+                  start: pnpm start
+                  wait-on: http://localhost:3000 # Wait for server before running tests
+                  browser: chrome

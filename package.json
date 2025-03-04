@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test:unit": "vitest",
+    "test:unit:ci": "vitest run",
     "cypress:open": "cypress open"
   },
   "dependencies": {

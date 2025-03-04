@@ -6,5 +6,5 @@
  * @returns {string} The original string or an empty string if the value is nullish or undefined.
  */
 export const toSafeString = (value: string | null | undefined): string => {
-  return typeof value !== "string" ? "" : value;
+    return typeof value !== "string" ? "" : value;
 };

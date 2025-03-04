@@ -1,6 +1,7 @@
 # Contributing to Ezex Front-End
 
-Thank you for considering contributing to this project! Follow this guide to ensure a smooth contribution process.
+Thank you for considering contributing to this project! Follow this guide to
+ensure a smooth contribution process.
 
 ## 🛠 Project Setup
 
@@ -42,9 +43,12 @@ pnpm dev
 
 ## 📝 Commit Messages
 
-We follow Conventional Commits for commit messages. You can use commitlint's [config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional) to ensure your commit messages follow the convention.
+We follow Conventional Commits for commit messages. You can use commitlint's
+[config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional)
+to ensure your commit messages follow the convention.
 
-You can also use [commitizen](https://www.npmjs.com/package/commitizen) to help you write your commit messages based on the above convention.
+You can also use [commitizen](https://www.npmjs.com/package/commitizen) to help
+you write your commit messages based on the above convention.
 
 Format:
 

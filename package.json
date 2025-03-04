@@ -1,38 +1,57 @@
 {
-  "name": "ezex-frontend",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "test:unit": "vitest",
-    "test:unit:ci": "vitest run",
-    "cypress:open": "cypress open"
-  },
-  "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.2.0"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/react": "^16.2.0",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@vitejs/plugin-react": "^4.3.4",
-    "cypress": "^14.1.0",
-    "eslint": "^9",
-    "eslint-config-next": "15.2.0",
-    "jsdom": "^26.0.0",
-    "tailwindcss": "^4",
-    "typescript": "^5",
-    "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.0.7"
-  },
-  "packageManager": "pnpm@10.5.2"
+    "name": "ezex-frontend",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev --turbopack",
+        "build": "next build",
+        "start": "next start",
+        "test": "vitest",
+        "test:ci": "vitest run",
+        "cypress:open": "cypress open",
+        "lint": "next lint",
+        "type-check": "tsc --noEmit",
+        "format": "prettier --write .",
+        "lint:fix": "next lint --fix",
+        "prepare": "husky install",
+        "lint-staged": "lint-staged",
+        "commit": "cz"
+    },
+    "dependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "next": "15.2.0"
+    },
+    "devDependencies": {
+        "@eslint/eslintrc": "^3",
+        "@tailwindcss/postcss": "^4",
+        "@testing-library/dom": "^10.4.0",
+        "@testing-library/react": "^16.2.0",
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "@vitejs/plugin-react": "^4.3.4",
+        "cypress": "^14.1.0",
+        "eslint": "^9",
+        "eslint-config-next": "15.2.0",
+        "jsdom": "^26.0.0",
+        "tailwindcss": "^4",
+        "typescript": "^5",
+        "vite-tsconfig-paths": "^5.1.4",
+        "vitest": "^3.0.7",
+        "@commitlint/cli": "^19.7.1",
+        "@commitlint/config-conventional": "^19.7.1",
+        "commitizen": "^4.3.1",
+        "cz-conventional-changelog": "^3.3.0",
+        "husky": "^8.0.0",
+        "lint-staged": "^15.4.3",
+        "prettier": "^3.5.2",
+        "prettier-plugin-tailwindcss": "^0.6.11"
+    },
+    "packageManager": "pnpm@10.5.2",
+    "config": {
+        "commitizen": {
+            "path": "cz-conventional-changelog"
+        }
+    }
 }

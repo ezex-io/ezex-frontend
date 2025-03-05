@@ -1,2 +1,4 @@
 #!/usr/bin/env sh
-npm run lint-staged --concurrent false
+. "$(dirname -- "$0")/_/husky.sh"
+
+bun run lint-staged --concurrent false

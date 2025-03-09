@@ -2,12 +2,12 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 echo "🧪 Running tests..."
-bun run test:ci || { echo "❌ Tests failed"; exit 1; }
+yarn test:ci || { echo "❌ Tests failed"; exit 1; }
 
 echo "🔍 Running TypeScript check..."
-bun run type-check || { echo "❌ Type checking failed"; exit 1; }
+yarn type-check || { echo "❌ Type checking failed"; exit 1; }
 
 echo "🔧 Running build verification..."
-bun run build || { echo "❌ Build failed"; exit 1; }
+yarn build || { echo "❌ Build failed"; exit 1; }
 
 echo "✅ Pre-push checks passed!"

@@ -10,13 +10,13 @@ Fork the repository and clone your fork.
 Install dependencies:
 
 ```bash
-bun install
+yarn install
 ```
 
 Start the development server:
 
 ```bash
-bun run dev
+yarn dev
 ```
 
 ## 🚀 Folder Structure
@@ -99,7 +99,7 @@ git checkout -b feat/new-feature
 - Write tests for any new features or bug fixes:
 
 ```bash
-bun run test
+yarn test
 ```
 
 - Ensure that new functionality is covered with appropriate tests.

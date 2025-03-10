@@ -5,13 +5,14 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+    --font-sans: var(--font-inter);
+    --font-mono: var(--font-roboto-mono);
 }
 
+/* https://oklch.com/ is a tool to convert hex to oklch */
 :root {
     --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
+    --foreground: oklch(16.52% 0.0062 285.7); /* hex: #0e0e11 */
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
@@ -46,8 +47,8 @@
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
+    --foreground: oklch(1 0 0);
+    --background: oklch(16.52% 0.0062 285.7); /* hex: #0e0e11 */
     --card: oklch(0.145 0 0);
     --card-foreground: oklch(0.985 0 0);
     --popover: oklch(0.145 0 0);
@@ -117,13 +118,34 @@
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
+
+    --font-sans: var(--font-inter);
+    --font-mono: var(--font-roboto-mono);
+
+    --color-primary-50: oklch(97.65% 0.0165 162.76); /* hex: #eefbf4 */
+    --color-primary-100: oklch(94.4% 0.0435 158.86); /* hex: #d5f6e2 */
+    --color-primary-200: oklch(89.16% 0.0792 159.54); /* hex: #aeecc9 */
+    --color-primary-300: oklch(81.89% 0.1148 161.32); /* hex: #7adbac */
+    --color-primary-400: oklch(68.82% 0.1365 159.39); /* hex: #39b47c */
+    --color-primary-500: oklch(65.14% 0.1417 158.93); /* hex: #20a96f */
+    --color-primary-600: oklch(55.5% 0.1215 159.51); /* hex: #138859 */
+    --color-primary-700: oklch(47.45% 0.1007 160.95); /* hex: #0f6d49 */
+    --color-primary-800: oklch(40.39% 0.0806 163.07); /* hex: #0f563c */
+    --color-primary-900: oklch(35.59% 0.0678 164.97); /* hex: #0d4733 */
+    --color-primary-950: oklch(24.88% 0.0444 167.54); /* hex: #06281d */
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+    * {
+        @apply border-border outline-ring/50;
     }
-  body {
-    @apply bg-background text-foreground;
+    body {
+        @apply bg-background text-foreground;
     }
+}
+
+.main-container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1440px;
 }

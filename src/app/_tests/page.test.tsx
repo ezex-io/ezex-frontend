@@ -1,8 +1,8 @@
-import { expect, test } from "vitest";
+import HomePage from "@/app/page";
 import { render, screen } from "@testing-library/react";
-import Home from "@/app/page";
+import { expect, test } from "vitest";
 
 test("Page", () => {
-    render(<Home />);
-    expect(screen.getByTestId("nextjs-logo")).toBeDefined();
+    render(<HomePage />);
+    expect(screen.getByTestId("title")).toBeDefined();
 });

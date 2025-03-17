@@ -4,6 +4,10 @@ Welcome to the ezeX Frontend!
 
 This is an open-source frontend application for the ezeX project.
 
+## 🧩 Key Technologies
+
+<TODO>
+
 ## 🤝 Contributing
 
 Contributions are most welcome!

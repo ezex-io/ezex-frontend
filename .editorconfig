@@ -1,29 +1,39 @@
-# [DOC]: https://editorconfig.org
+# EditorConfig is awesome: https://editorconfig.org
 
 root = true
 
 [*]
-indent_style = space
-indent_size = 4
-tab_width = 4
-end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.{js,ts,jsx,tsx,json,html,css,scss,md}]
-max_line_length = 80
-quote_type = double
-indent_style = space
-indent_size = 4
-
 [*.md]
-prose_wrap = always
-
-[*.{js,ts,jsx,tsx}]
-charset = utf-8
-trim_trailing_whitespace = false
-
-[*.{json,yml,yaml}]
 indent_style = space
 indent_size = 2
+# Wraps text at the max_line_length automatically.
+max_line_length = 80
+prose_wrap = always
+
+[Makefile]
+indent_style = tab
+indent_size = 4
+
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+[*.toml]
+indent_style = space
+indent_size = 2
+
+[*.json]
+indent_style = space
+indent_size = 2
+
+[*.{js,ts,jsx,tsx}]
+indent_style = space
+indent_size = 4
+tab_width = 4
+end_of_line = lf
+quote_type = double
+max_line_length = 80

@@ -15,8 +15,8 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Ezex - Easy Exchange",
-    description: "Created by Pactus Team",
+    title: "ezeX - Crystal Clear Exchange",
+    description: "Powered by Pactus Team",
 };
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => {

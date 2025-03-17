@@ -27,7 +27,7 @@ yarn install
 yarn dev
 ```
 
-## 🚀 Folder Structure
+## 🗄️ Folder Structure
 
 ```
 📦 src

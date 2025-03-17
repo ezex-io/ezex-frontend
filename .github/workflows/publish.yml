@@ -1,0 +1,51 @@
+name: Publish Docker Image
+
+on:
+  push:
+    tags:
+      - v*
+    branches:
+      - main
+
+env:
+  ENV_VARIABLES_FILE_STAGING: ${{ vars.ENV_VARIABLES_FILE_STAGING }}
+  ENV_VARIABLES_FILE_PRODUCTION: ${{ vars.ENV_VARIABLES_FILE_PRODUCTION }}
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+        # Check if the workflow was triggered by a tag (production) or a branch (staging)
+      - name: Set environment variables
+        run: |
+          touch .env.production
+          if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+              echo "🔥 Using production environment"
+              echo $ENV_VARIABLES_FILE_PRODUCTION >> .env.production
+              else
+              echo "🧪 Using staging environment"
+              echo $ENV_VARIABLES_FILE_STAGING >> .env.production
+          fi
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ezexci
+          password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ezexio/ezex-frontend
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

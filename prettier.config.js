@@ -15,4 +15,13 @@ module.exports = {
     tabWidth: 4,
     trailingComma: "all",
     useTabs: false,
+    editorconfig: true,
+    overrides: [
+        {
+            files: ["*.yml", "*.yaml"],
+            options: {
+                tabWidth: 2,
+            },
+        },
+    ],
 };

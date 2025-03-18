@@ -3,8 +3,8 @@ import { FC, PropsWithChildren } from "react";
 import LayoutCarousel from "./_components/carousel";
 
 export const metadata: Metadata = {
-    title: "Ezex - Sign-In",
-    description: "Created by Pactus Team",
+    title: "ezeX - Sign-In",
+    description: "Powered by Pactus Team",
 };
 
 const AuthLayout: FC<PropsWithChildren> = ({ children }) => {

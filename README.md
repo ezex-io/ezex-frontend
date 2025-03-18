@@ -1,9 +1,19 @@
-# Ezex Front-End
+# ezeX Frontend
 
-Welcome to Ezex Front-End! 🚀 This is an open-source frontend application for
-Ezex project.
+Welcome to the ezeX Frontend!
+
+This is an open-source frontend application for the ezeX project.
+
+## 🧩 Key Technologies
+
+<TODO>
 
 ## 🤝 Contributing
 
-We welcome contributions! Please read our [Contributing](contribution.md) Guide
-to get started.
+Contributions are most welcome!
+Whether it's code, documentation, or ideas, every contribution makes a difference.
+Please read the [Contributing](CONTRIBUTING.md) guide to get started.
+
+## ⚖️ License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.

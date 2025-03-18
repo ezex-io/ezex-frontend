@@ -1,21 +1,21 @@
 ---
 name: Bug report
 about: Create a bug report to help us improve.
-title: '[BUG]: '
+title: "[BUG]: "
 labels: '["bug"]'
 type: "Bug"
-assignees: ''
-
+assignees: ""
 ---
 
 ## Description
 
-> Provide a clear and concise description of the issue, including what you expected to happen.
+> Provide a clear and concise description of the issue, including what you
+> expected to happen.
 
 ### How To Reproduce
 
-> Detail the steps taken to reproduce this error, and
-> whether this issue can be reproduced consistently or if it is intermittent.
+> Detail the steps taken to reproduce this error, and whether this issue can be
+> reproduced consistently or if it is intermittent.
 
 1. Step 1
 2. Step 2

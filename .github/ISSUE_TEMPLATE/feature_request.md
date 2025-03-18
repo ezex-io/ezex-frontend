@@ -1,11 +1,10 @@
 ---
 name: Feature request
 about: Suggest an idea for this project.
-title: '[FEATURE]: '
+title: "[FEATURE]: "
 labels: '["enhancement"]'
 type: "Feature"
-assignees: ''
-
+assignees: ""
 ---
 
 ## Describe the problem you'd like to have solved
@@ -18,7 +17,8 @@ assignees: ''
 
 ### Alternatives and current work-around
 
-> A clear and concise description of any alternatives you've considered or any work-around that are currently in place.
+> A clear and concise description of any alternatives you've considered or any
+> work-around that are currently in place.
 
 ### Additional context
 

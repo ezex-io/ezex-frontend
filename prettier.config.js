@@ -18,7 +18,7 @@ module.exports = {
     editorconfig: true,
     overrides: [
         {
-            files: ["*.yml", "*.yaml"],
+            files: ["*.yml", "*.yaml", "*.json"],
             options: {
                 tabWidth: 2,
             },

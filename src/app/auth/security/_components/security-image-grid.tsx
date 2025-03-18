@@ -25,6 +25,7 @@ const SecurityImageGrid: FC<SecurityImageGridProps> = ({
                 return (
                     <button
                         key={image.id}
+                        type="button"
                         onClick={() => onImageSelect(image.id)}
                         className={cn(
                             "group relative aspect-square overflow-hidden rounded-lg border-2 transition-all duration-300",

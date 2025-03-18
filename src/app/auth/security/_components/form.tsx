@@ -127,11 +127,11 @@ const SecurityVerificationForm = () => {
                 </p>
             )}
 
-            <div className="mt-8 flex flex-col space-y-4">
+            <div className="flex flex-col space-y-4">
                 <Button
                     size="lg"
                     type="submit"
-                    className="bg-primary-500 hover:bg-primary-600 mt-8 w-full"
+                    className="bg-primary-500 hover:bg-primary-600 mt-6 w-full sm:mt-8"
                     disabled={isSubmitting}
                     color="primary"
                 >
@@ -141,7 +141,7 @@ const SecurityVerificationForm = () => {
                     type="button"
                     variant="link"
                     className="text-primary-500"
-                    onClick={() => router.back()}
+                    onClick={() => router.push("/auth/sign-in")}
                     disabled={isSubmitting}
                 >
                     Go Back

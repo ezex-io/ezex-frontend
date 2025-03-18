@@ -141,7 +141,7 @@ const SecurityVerificationForm = () => {
                     type="button"
                     variant="link"
                     className="text-primary-500"
-                    onClick={() => router.push("/auth/sign-in")}
+                    onClick={() => router.push("/auth/sign-in/email")}
                     disabled={isSubmitting}
                 >
                     Go Back

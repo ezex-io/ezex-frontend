@@ -12,6 +12,8 @@ on:
 env:
   ENV_VARIABLES_FILE_TEST: ${{ vars.ENV_VARIABLES_FILE_TEST }}
 
+# A test change
+
 jobs:
   unit-test:
     name: Run Unit Tests

@@ -22,11 +22,9 @@ jobs:
 
       - name: Add Test Environment Variables
         run: |
-          touch .env.production
           echo "🧪 Using TEST environment"
           echo "envs: ${ENV_VARIABLES}"
-          echo "${ENV_VARIABLES}" > .env.production
-          echo .env.production
+          echo "${ENV_VARIABLES}" >> .env.production
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -53,10 +51,9 @@ jobs:
 
       - name: Add Test Environment Variables
         run: |
-          touch .env.production
           echo "🧪 Using TEST environment"
-          printf "%s" "$ENV_VARIABLES" > .env.production
-          echo .env.production
+          echo "envs: ${ENV_VARIABLES}"
+          echo "${ENV_VARIABLES}" >> .env.production
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

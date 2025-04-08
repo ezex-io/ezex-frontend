@@ -24,10 +24,10 @@ jobs:
           touch .env.production
           if [[ "${{ github.ref }}" == refs/tags/* ]]; then
             echo "🔥 Using production environment"
-            echo $ENV_VARIABLES_FILE_PRODUCTION >> .env.production
+            echo ${ENV_VARIABLES_FILE_PRODUCTION} >> .env.production
           else
             echo "🧪 Using development environment"
-            echo $ENV_VARIABLES_FILE_DEVELOPMENT >> .env.production
+            echo ${ENV_VARIABLES_FILE_DEVELOPMENT} >> .env.production
           fi
 
       - name: Log in to Docker Hub

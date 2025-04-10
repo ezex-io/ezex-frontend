@@ -6,7 +6,8 @@ This is an open-source frontend application for the ezeX project.
 
 ## 🧩 Key Technologies
 
-<TODO>
+- NextJs: <TODO>
+ <TODO>
 
 ## 🤝 Contributing
 

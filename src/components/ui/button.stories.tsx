@@ -201,15 +201,38 @@ export const CombinedVariants: Story = {
                             </p>
                             <div className="flex flex-wrap gap-3">
                                 {SIZE_OPTIONS.map(size => (
-                                    <Button
+                                    <div
                                         key={`${variant}-${size}`}
-                                        {...args}
-                                        size={size}
-                                        variant={variant}
-                                        iconLeft={<SearchIcon />}
+                                        className="flex flex-col gap-2"
                                     >
-                                        {size}
-                                    </Button>
+                                        <Button
+                                            {...args}
+                                            size={size}
+                                            variant={variant}
+                                            iconLeft={<SearchIcon />}
+                                        >
+                                            {size}
+                                        </Button>
+                                        <Button
+                                            {...args}
+                                            size={size}
+                                            variant={variant}
+                                            iconLeft={<SearchIcon />}
+                                            isLoading
+                                        >
+                                            {size}
+                                        </Button>
+
+                                        <Button
+                                            {...args}
+                                            size={size}
+                                            variant={variant}
+                                            iconLeft={<SearchIcon />}
+                                            disabled
+                                        >
+                                            {size}
+                                        </Button>
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -220,15 +243,39 @@ export const CombinedVariants: Story = {
                             </p>
                             <div className="flex flex-wrap gap-3">
                                 {SIZE_OPTIONS.map(size => (
-                                    <Button
+                                    <div
                                         key={`${variant}-${size}-icon`}
-                                        {...args}
-                                        size={size}
-                                        variant={variant}
-                                        icon
+                                        className="flex flex-col gap-2"
                                     >
-                                        <SearchIcon />
-                                    </Button>
+                                        <Button
+                                            {...args}
+                                            size={size}
+                                            variant={variant}
+                                            icon
+                                        >
+                                            <SearchIcon />
+                                        </Button>
+
+                                        <Button
+                                            {...args}
+                                            size={size}
+                                            variant={variant}
+                                            icon
+                                            isLoading
+                                        >
+                                            <SearchIcon />
+                                        </Button>
+
+                                        <Button
+                                            {...args}
+                                            size={size}
+                                            variant={variant}
+                                            icon
+                                            disabled
+                                        >
+                                            <SearchIcon />
+                                        </Button>
+                                    </div>
                                 ))}
                             </div>
                         </div>

@@ -1,8 +1,10 @@
+"use client";
+
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/utils/cn";
-import { Loader } from "lucide-react";
+import OrbitingDotsLoading from "./orbitingDotsLoading";
 
 /**
  * Utility class generator for the Button component using `class-variance-authority`.
@@ -48,6 +50,10 @@ const buttonVariants = cva(
                 white: "bg-white text-black hover:bg-white/90",
                 primary: "bg-primary-500 text-white hover:bg-primary-500/90",
             },
+            isLoading: {
+                true: "cursor-wait",
+                false: "",
+            },
         },
         compoundVariants: [
             // Handle square icon-only buttons by size
@@ -66,12 +72,29 @@ const buttonVariants = cva(
             {
                 variant: "outline",
                 disabled: true,
-                className: "border-accent text-accent-foreground ",
+                className: "border-accent-foreground text-accent-foreground ",
             },
             {
                 variant: ["text", "link", "ghost"],
                 disabled: true,
                 className: "text-accent-foreground",
+            },
+
+            // isLoading state overrides
+            {
+                size: "md",
+                isLoading: true,
+                className: "text-xl",
+            },
+            {
+                size: "lg",
+                isLoading: true,
+                className: "text-2xl",
+            },
+            {
+                size: "xl",
+                isLoading: true,
+                className: "text-3xl",
             },
         ],
         defaultVariants: {
@@ -130,6 +153,7 @@ function Button({
                     color,
                     icon,
                     disabled,
+                    isLoading,
                 }),
             )}
             disabled={disabled}
@@ -139,10 +163,14 @@ function Button({
                 <span className={cn(isLoading && "invisible")}>{IconLeft}</span>
             )}
             <span className={cn(isLoading && "invisible")}>{children}</span>
-            {isLoading && <Loader className="absolute animate-spin" />}
             {IconRight && (
                 <span className={cn(isLoading && "invisible")}>
                     {IconRight}
+                </span>
+            )}
+            {isLoading && (
+                <span className="absolute">
+                    <OrbitingDotsLoading />
                 </span>
             )}
         </Comp>

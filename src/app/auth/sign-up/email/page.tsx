@@ -1,18 +1,19 @@
 import smallScreenImg from "@images/auth/small-screen-email.png";
 import Image from "next/image";
+import Link from "next/link";
 import { FC } from "react";
 import EmailForm from "./_components/form";
 
-const SigninWithEmailPage: FC = () => {
+const SignupWithEmailPage: FC = () => {
     return (
         <div className="flex w-full max-w-[28.75rem] flex-col p-1">
             <p className="mb-6 text-xl">
-                Welcome back to{" "}
+                Welcome to{" "}
                 <span className="text-primary-500 font-bold">ezeX</span>
             </p>
 
             <h1 className="mb-0 text-3xl font-bold lg:mb-10">
-                Sign in to your account
+                Create your account
             </h1>
 
             <Image
@@ -56,8 +57,16 @@ const SigninWithEmailPage: FC = () => {
                     </div>
                 </div> */}
             </div>
+
+            <p className="mt-8 text-sm">
+                By creating an account you certify that you are over the age of
+                18 and agree to the{" "}
+                <Link className="text-primary-500" href="#">
+                    Privacy Policy
+                </Link>
+            </p>
         </div>
     );
 };
 
-export default SigninWithEmailPage;
+export default SignupWithEmailPage;

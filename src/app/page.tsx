@@ -20,12 +20,20 @@ export default function Home() {
                 Welcome to EZEX Exchange!
             </Typography>
 
-            <Link
-                href="/auth/sign-in/email"
-                className={cn(buttonVariants(), "mt-10")}
-            >
-                Signup
-            </Link>
+            <div className="flex gap-4">
+                <Link
+                    href="/auth/sign-up/email"
+                    className={cn(buttonVariants(), "mt-10")}
+                >
+                    Sign Up
+                </Link>
+                <Link
+                    href="/auth/sign-in/email"
+                    className={cn(buttonVariants(), "mt-10")}
+                >
+                    Sign In
+                </Link>
+            </div>
         </div>
     );
 }

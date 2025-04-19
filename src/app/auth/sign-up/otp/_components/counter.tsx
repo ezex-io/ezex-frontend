@@ -37,7 +37,7 @@ const Counter: FC<CounterProps> = ({ recipient }) => {
             },
             {
                 onSuccess() {
-                    toast.success("OTP sent successfully");
+                    toast.success("Confirmation Code Sent Successfully");
                     resetCountdown();
                     startCountdown();
                 },

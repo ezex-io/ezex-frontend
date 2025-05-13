@@ -12,11 +12,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { PATHS } from "@/constants/paths.constant";
-import { useSigninStore } from "@/stores/signin/signin.store";
+import {
+    DeliveryMethod,
+    sendConfirmationCodeAPI,
+} from "@/lib/graphql/mutations/send-confirmation-code";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { EMAIL_FORM_INITIAL_VALUES } from "../_constants/email-form.constant";
 import {
     emailFormSchema,
@@ -30,21 +34,23 @@ const EmailForm = () => {
         defaultValues: EMAIL_FORM_INITIAL_VALUES,
     });
 
-    const setEmail = useSigninStore(state => state.setEmail);
-    const setPictureName = useSigninStore(state => state.setPictureName);
-
-    const getEmailPictureInfo = useMutation({
-        mutationFn: async () => {}, // TODO: add when api is ready
+    const sendOTPMutation = useMutation({
+        mutationFn: sendConfirmationCodeAPI,
     });
 
     const onSubmit = form.handleSubmit(values => {
-        getEmailPictureInfo.mutate(undefined, {
-            onSuccess() {
-                setEmail(values.email);
-                setPictureName("baseball"); // TODO: change when api is ready
-                router.push(PATHS.SigninPasswordPage);
+        sendOTPMutation.mutate(
+            {
+                method: DeliveryMethod.EMAIL,
+                recipient: values.email,
             },
-        });
+            {
+                onSuccess() {
+                    toast.success("Confirmation Code Sent Successfully");
+                    router.push(`${PATHS.SignupOTPPage}?email=${values.email}`);
+                },
+            },
+        );
     });
 
     return (
@@ -72,8 +78,8 @@ const EmailForm = () => {
                     type="submit"
                     color="primary"
                     className="mt-4 lg:mt-8"
-                    disabled={getEmailPictureInfo.isPending}
-                    isLoading={getEmailPictureInfo.isPending}
+                    disabled={sendOTPMutation.isPending}
+                    isLoading={sendOTPMutation.isPending}
                 >
                     Continue
                 </Button>

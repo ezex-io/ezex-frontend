@@ -1,13 +1,21 @@
 name: Testing
+permissions:
+  contents: read
 
 on:
-  push:
-    branches:
-      - main
+  # Using `pull_request_target` is a workaround for the issue where PRs from forks
+  # cannot access secrets or environment variables, as required in our workflow.
+  # To overcome this, we use `pull_request_target` and manually check out the source branch of the PR.
+  # See `actions/checkout` for how this is done.
+  # More info: https://securitylab.github.com/resources/github-actions-preventing-pwn-requests/
+  pull_request_target:
+    branches: [main]
 
   pull_request:
-    branches:
-      - main
+    branches: [main]
+
+  push:
+    branches: [main]
 
 env:
   ENV_VARIABLES_FILE_TEST: ${{ vars.ENV_VARIABLES_FILE_TEST }}
@@ -20,6 +28,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          # Ensure the workflow checks out the PR source branch (see explanation above)
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Add Test Environment Variables
         run: |
@@ -46,6 +57,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          # Ensure the workflow checks out the PR source branch (see explanation above)
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Add Test Environment Variables
         run: |

@@ -1,4 +1,6 @@
 name: Semantic PR Validation
+permissions:
+  pull-requests: read
 
 on:
   pull_request_target:
@@ -7,9 +9,6 @@ on:
       - edited
       - synchronize
       - reopened
-
-permissions:
-  pull-requests: read
 
 jobs:
   validate-pr-title:
@@ -49,8 +48,7 @@ jobs:
 
       - name: Warn Missing Scope
         if: always() && !steps.lint_pr_title.outputs.scope
-        run:
-          echo "::warning ::The PR title does not include a scope. Consider
+        run: echo "::warning ::The PR title does not include a scope. Consider
           adding one for better clarity."
 
       - name: Remove Sticky Comment on Fix

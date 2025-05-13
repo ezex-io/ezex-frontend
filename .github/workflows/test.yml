@@ -11,8 +11,9 @@ on:
   pull_request_target:
     branches: [main]
 
-  pull_request:
-    branches: [main]
+  # This should be commented.
+  # pull_request:
+  #   branches: [main]
 
   push:
     branches: [main]

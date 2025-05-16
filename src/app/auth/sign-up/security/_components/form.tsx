@@ -38,7 +38,7 @@ const SecurityVerificationForm = () => {
         if (!verifiedEmail) {
             router.replace(PATHS.SigninEmailPage);
         }
-    }, [verifiedEmail]);
+    }, [verifiedEmail, router]);
 
     const createUserMutation = useMutation({
         mutationFn: createUserAPI,

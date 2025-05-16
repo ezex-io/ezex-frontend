@@ -21,7 +21,7 @@ const Pagination: FC<PaginationProps> = ({ id, count, current, className }) => {
                 })}
             />
         ));
-    }, [count, current]);
+    }, [count, current, id]);
 
     return (
         <div className={cn("flex items-center gap-1", className)}>

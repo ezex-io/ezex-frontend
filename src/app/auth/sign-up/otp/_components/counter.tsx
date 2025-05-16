@@ -23,7 +23,7 @@ const Counter: FC<CounterProps> = ({ recipient }) => {
 
     useEffect(() => {
         startCountdown();
-    }, []);
+    }, [startCountdown]);
 
     const sendOTPMutation = useMutation({
         mutationFn: sendConfirmationCodeAPI,

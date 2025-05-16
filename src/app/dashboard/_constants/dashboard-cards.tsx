@@ -1,4 +1,4 @@
-import { ArrowUpRight, Coins, DollarSign, Users, Wallet } from "lucide-react";
+import { ArrowUpRight, Coins, DollarSign, Wallet } from "lucide-react";
 
 export const DASHBOARD_CARDS = [
     {

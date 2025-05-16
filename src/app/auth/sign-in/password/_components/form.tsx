@@ -41,7 +41,7 @@ const PasswordForm = () => {
         if (!email || !pictureName || !securityImage) {
             router.push(PATHS.SigninEmailPage);
         }
-    }, [email, pictureName, securityImage]);
+    }, [email, pictureName, securityImage, router]);
 
     const form = useForm<PasswordFormValues>({
         resolver: zodResolver(passwordFormSchema),

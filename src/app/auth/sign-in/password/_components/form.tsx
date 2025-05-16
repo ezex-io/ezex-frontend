@@ -21,7 +21,7 @@ import {
     PasswordFormValues,
 } from "../_schemas/email-form.schema";
 import { useSigninStore } from "@/stores/signin/signin.store";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { PATHS } from "@/constants/paths.constant";
 import { VERIFICATION_IMAGES } from "@/app/auth/sign-up/security/_constants/verification-images";
@@ -35,19 +35,13 @@ const PasswordForm = () => {
     const email = useSigninStore(state => state.email);
     const pictureName = useSigninStore(state => state.pictureName);
 
-    const pictureInfo = useMemo(() => {
-        const info = VERIFICATION_IMAGES.find(img =>
-            img.path.endsWith(`/${pictureName}.png`),
-        );
-
-        return info ?? null;
-    }, []);
+    const securityImage = VERIFICATION_IMAGES.find(img => img.id === Number(pictureName));
 
     useEffect(() => {
-        if (!email || !pictureName || !pictureInfo) {
+        if (!email || !pictureName || !securityImage) {
             router.push(PATHS.SigninEmailPage);
         }
-    }, []);
+    }, [email, pictureName, securityImage]);
 
     const form = useForm<PasswordFormValues>({
         resolver: zodResolver(passwordFormSchema),
@@ -69,14 +63,9 @@ const PasswordForm = () => {
                 password: values.password,
             },
             {
-                async onSuccess(data) {
-                    const idToken = await data.user.getIdToken();
-                    // TODO: remove this console and send token to backend to get the real JWT token in the cookies
-
-                    console.log(idToken);
-
+                async onSuccess() {
                     toast.success("Successful login");
-                    router.replace(PATHS.Home);
+                    router.replace(PATHS.Dashboard);
                 },
                 onError(error) {
                     let message = "An unknown error occurred";
@@ -85,6 +74,15 @@ const PasswordForm = () => {
                         switch (error.code) {
                             case "auth/invalid-credential":
                                 message = "Invalid email or password";
+                                break;
+                            case "auth/user-disabled":
+                                message = "This account has been disabled.";
+                                break;
+                            case "auth/user-not-found":
+                                message = "No user found with this email.";
+                                break;
+                            case "auth/wrong-password":
+                                message = "Incorrect password.";
                                 break;
                             default:
                                 message = error.message;
@@ -106,15 +104,17 @@ const PasswordForm = () => {
                 className="flex min-h-[22.25rem] flex-col"
                 onSubmit={onSubmit}
             >
-                {pictureInfo && (
-                    <Image
-                        priority
-                        width={200}
-                        height={200}
-                        className="my-4 h-[12.5rem] w-[12.5rem] self-center object-cover"
-                        src={pictureInfo?.path ?? ""}
-                        alt={pictureInfo?.alt ?? ""}
-                    />
+                {securityImage && (
+                    <div className="relative mx-auto mb-6 aspect-square h-[12.5rem] w-[12.5rem] overflow-hidden rounded-lg border-2 border-gray-700">
+                        <Image
+                            src={securityImage.path}
+                            alt={securityImage.alt}
+                            fill
+                            sizes="(max-width: 768px) 200px, 200px"
+                            className="object-cover"
+                            priority
+                        />
+                    </div>
                 )}
 
                 <FormField

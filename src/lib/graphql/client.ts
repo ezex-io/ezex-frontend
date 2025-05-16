@@ -1,6 +1,5 @@
 import { toSafeString } from "@/utils/stringUtils/stringUtils";
 import { GraphQLClient, RequestDocument, ClientError } from "graphql-request";
-import { toast } from "sonner";
 
 const GQL_BASE_URL = `${toSafeString(process.env.NEXT_PUBLIC_GATEWAY_API_BASE_URL)}${"/query"}`;
 const gqlClient = new GraphQLClient(GQL_BASE_URL);
@@ -24,15 +23,10 @@ export async function gqlRequest<T = unknown>(
             const gqlError = error.response.errors;
 
             if (gqlError && gqlError.length !== 0) {
-                gqlError.forEach(err => {
-                    toast.error(err.message);
-                });
 
                 throw error;
             }
         }
-
-        toast.error("Something went wrong");
         throw error;
     }
 }

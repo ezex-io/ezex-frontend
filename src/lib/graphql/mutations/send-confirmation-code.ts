@@ -4,7 +4,7 @@ import { gqlRequest, GQLRequestOptions } from "../client";
 export const SEND_CONFIRMATION_CODE = gql`
     mutation SendConfirmationCode($input: SendConfirmationCodeInput!) {
         sendConfirmationCode(input: $input) {
-            ok
+            recipient
         }
     }
 `;
@@ -22,6 +22,9 @@ export const sendConfirmationCodeAPI = async (
     body: SendConfirmationCodeAPIBody,
 ) => {
     return await gqlRequest(SEND_CONFIRMATION_CODE, {
-        input: body,
+        input: {
+            method: body.method,
+            recipient: body.recipient,
+        },
     });
 };

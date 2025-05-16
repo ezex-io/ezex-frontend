@@ -5,4 +5,5 @@ export enum PATHS {
     SignupEmailPage = "/auth/sign-up/email",
     SignupOTPPage = "/auth/sign-up/otp",
     SignupSecurityPage = "/auth/sign-up/security",
+    Dashboard = "/dashboard",
 }

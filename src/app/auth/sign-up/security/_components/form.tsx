@@ -14,6 +14,8 @@ import {
 import PasswordInput from "@/components/ui/password-input";
 import { PATHS } from "@/constants/paths.constant";
 import { createUserAPI } from "@/lib/axios/firebase/create-user-with-email-password";
+import { processAuthTokenAPI } from "@/lib/graphql/mutations/process-auth-token";
+import { saveSecurityImageAPI } from "@/lib/graphql/mutations/save-security-image";
 import { useSignupStore } from "@/stores/signup/signup.store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -36,14 +38,18 @@ const SecurityVerificationForm = () => {
         if (!verifiedEmail) {
             router.replace(PATHS.SigninEmailPage);
         }
-    }, [verifiedEmail]);
+    }, [verifiedEmail, router]);
 
     const createUserMutation = useMutation({
         mutationFn: createUserAPI,
     });
 
-    const setSecurityPictureMutation = useMutation({
-        mutationFn: async () => {}, // TODO: add when ready
+    const processAuthTokenMutation = useMutation({
+        mutationFn: processAuthTokenAPI,
+    });
+
+    const setSecurityImageMutation = useMutation({
+        mutationFn: saveSecurityImageAPI,
     });
 
     const form = useForm<PasswordFormValues>({
@@ -51,54 +57,57 @@ const SecurityVerificationForm = () => {
         defaultValues: PASSWORD_FORM_INITIAL_VALUES,
     });
 
-    const onSubmit = form.handleSubmit(values => {
+    const onSubmit = form.handleSubmit(async (values) => {
         if (!verifiedEmail) return;
 
-        createUserMutation.mutate(
-            {
-                email: verifiedEmail as string,
+        try {
+            // Step 1: Create user in Firebase
+            const firebaseResponse = await createUserMutation.mutateAsync({
+                email: verifiedEmail,
                 password: values.password,
-            },
-            {
-                onSuccess() {
-                    // TODO: add when api is ready
-                    // setSecurityPictureMutation.mutate();
+            });
 
-                    // TODO: login user here and redirect user to dashboard
-                    toast.success("welcome to ezeX!");
-                    router.push(PATHS.Home);
-                },
-                onError(error) {
-                    let message = "An unknown error occurred";
+            // Step 2: Get the ID token and process it
+            const idToken = await firebaseResponse.user.getIdToken();
 
-                    if (error instanceof FirebaseError) {
-                        switch (error.code) {
-                            case "auth/email-already-in-use":
-                                message = "This email is already in use.";
-                                break;
+            await processAuthTokenMutation.mutateAsync({
+                id_token: idToken,
+            });
 
-                            case "auth/invalid-email":
-                                message = "The email address is not valid.";
-                                break;
+            // Step 3: Save security image
+            await setSecurityImageMutation.mutateAsync({
+                email: verifiedEmail,
+                security_image: values.imageId.toString(),
+                security_phrase: "", // TODO: add security phrase
+            });
 
-                            case "auth/operation-not-allowed":
-                                message =
-                                    "Email/password accounts are not enabled.";
-                                break;
+            // Success - everything worked
+            toast.success("Welcome to ezeX!");
+            router.push(PATHS.Dashboard);
+        } catch (error) {
+            let message = "An unknown error occurred";
 
-                            case "auth/weak-password":
-                                message = "The password is too weak.";
-                                break;
+            if (error instanceof FirebaseError) {
+                switch (error.code) {
+                    case "auth/email-already-in-use":
+                        message = "This email is already in use.";
+                        break;
+                    case "auth/invalid-email":
+                        message = "The email address is not valid.";
+                        break;
+                    case "auth/operation-not-allowed":
+                        message = "Email/password accounts are not enabled.";
+                        break;
+                    case "auth/weak-password":
+                        message = "The password is too weak.";
+                        break;
+                    default:
+                        message = error.message;
+                }
+            }
 
-                            default:
-                                message = error.message;
-                        }
-                    }
-
-                    toast.error(message);
-                },
-            },
-        );
+            toast.error(message);
+        }
     });
 
     // Watch the imageId value to use in the UI
@@ -115,7 +124,9 @@ const SecurityVerificationForm = () => {
     };
 
     const isPending =
-        createUserMutation.isPending || setSecurityPictureMutation.isPending;
+        createUserMutation.isPending ||
+        processAuthTokenMutation.isPending ||
+        setSecurityImageMutation.isPending;
 
     return (
         <Form {...form}>

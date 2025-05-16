@@ -26,9 +26,9 @@ const OTPForm: FC = () => {
 
     useEffect(() => {
         if (!email) {
-            router.replace(PATHS.SigninEmailPage);
+            router.replace(PATHS.SignupEmailPage);
         }
-    }, [email]);
+    }, [email, router]);
 
     const verifyOTPMutation = useMutation({
         mutationFn: verifyConfirmationCodeAPI,

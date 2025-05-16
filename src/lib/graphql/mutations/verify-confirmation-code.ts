@@ -4,7 +4,7 @@ import { gqlRequest, GQLRequestOptions } from "../client";
 export const VERIFY_CONFIRMATION_CODE = gql`
     mutation VerifyConfirmationCode($input: VerifyConfirmationCodeInput!) {
         verifyConfirmationCode(input: $input) {
-            ok
+            recipient
         }
     }
 `;
@@ -17,5 +17,10 @@ export interface VerifyConfirmationCodeAPIBody extends GQLRequestOptions {
 export const verifyConfirmationCodeAPI = async (
     body: VerifyConfirmationCodeAPIBody,
 ) => {
-    return await gqlRequest(VERIFY_CONFIRMATION_CODE, { input: body });
+    return await gqlRequest(VERIFY_CONFIRMATION_CODE, {
+        input: {
+            code: body.code,
+            recipient: body.recipient,
+        }
+    },);
 };
